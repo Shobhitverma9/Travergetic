@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, Phone } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -50,13 +51,15 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center font-heading font-black text-white text-sm shadow-lg group-hover:shadow-blue-500/40 transition-shadow">
-            T
-          </div>
-          <span className="font-heading font-bold text-xl text-white">
-            Trav<span className="gradient-text">ergetic</span>
-          </span>
+        <Link href="/" className="flex items-center group">
+          <Image
+            src="/images/Travergetic_Final_Logo.png"
+            alt="Travergetic Logo"
+            width={180}
+            height={45}
+            className="h-9 w-auto object-contain"
+            priority
+          />
         </Link>
 
         {/* Desktop Links */}

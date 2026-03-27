@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import Image from "next/image";
 
 const footerLinks = {
   Company: [
@@ -30,13 +31,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center font-heading font-black text-white text-sm">
-                T
-              </div>
-              <span className="font-heading font-bold text-xl text-white">
-                Trav<span className="gradient-text">ergetic</span>
-              </span>
+            <Link href="/" className="flex items-center mb-6">
+              <Image
+                src="/images/Travergetic_Final_Logo.png"
+                alt="Travergetic Logo"
+                width={160}
+                height={40}
+                className="h-8 w-auto object-contain"
+              />
             </Link>
             <p className="text-text-muted text-sm leading-relaxed mb-6 max-w-xs">
               Specialized technology company empowering travel, hotel & hospitality businesses with intelligent digital solutions since 2023.
