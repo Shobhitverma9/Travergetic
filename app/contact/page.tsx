@@ -293,12 +293,18 @@ export default function ContactPage() {
                     </div>
                   )}
 
-                  <div className="flex justify-center w-full">
-                    <ReCAPTCHA
-                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-                      onChange={(value) => setCaptchaValue(value)}
-                      theme="dark"
-                    />
+                  <div className="flex justify-center w-full min-h-[78px]">
+                    {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
+                      <ReCAPTCHA
+                        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                        onChange={(value) => setCaptchaValue(value)}
+                        theme="dark"
+                      />
+                    ) : (
+                      <div className="text-red-400 text-xs bg-red-400/10 p-3 rounded-lg border border-red-400/20">
+                        Admin: reCAPTCHA Site Key is missing in .env.local
+                      </div>
+                    )}
                   </div>
 
                   <button
