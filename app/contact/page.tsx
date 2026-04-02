@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle2, Calendar } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import ReCAPTCHA from "react-google-recaptcha";
 
 type FormData = {
   name: string;
@@ -28,6 +29,7 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
 
   const {
     register,
@@ -37,6 +39,10 @@ export default function ContactPage() {
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
+    if (!captchaValue) {
+      setError("Please complete the captcha.");
+      return;
+    }
     setLoading(true);
     setError("");
     try {
@@ -51,7 +57,7 @@ export default function ContactPage() {
           company: data.company,
           service: data.service,
           message: data.message,
-          to_email: "hello@travergetic.com",
+          to_email: "sales@travergetic.com",
         },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY"
       );
@@ -96,9 +102,9 @@ export default function ContactPage() {
               <h2 className="font-heading font-bold text-white text-xl mb-6">Contact Details</h2>
               <div className="space-y-5">
                 {[
-                  { icon: Mail, label: "Email", value: "hello@travergetic.com", href: "mailto:hello@travergetic.com" },
-                  { icon: Phone, label: "Phone / WhatsApp", value: "+91 99999 99999", href: "tel:+919999999999" },
-                  { icon: MapPin, label: "Location", value: "India", href: "#" },
+                  { icon: Mail, label: "Email", value: "sales@travergetic.com", href: "mailto:sales@travergetic.com" },
+                  { icon: Phone, label: "Phone / WhatsApp", value: "+91 85889 10062", href: "tel:+918588910062" },
+                  { icon: MapPin, label: "Location", value: "Noida, UP, India", href: "#" },
                 ].map((item) => {
                   const Icon = item.icon;
                   return (
@@ -117,31 +123,33 @@ export default function ContactPage() {
             </motion.div>
 
             {/* Calendly embed */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="glass-card rounded-2xl p-7"
-            >
-              <div className="flex items-center gap-3 mb-5">
-                <Calendar size={20} className="text-blue-400" />
-                <h2 className="font-heading font-bold text-white text-lg">Schedule a Call</h2>
-              </div>
-              <p className="text-text-muted text-sm mb-5">
-                Book a free 30-minute strategy session directly in our calendar.
-              </p>
-              {/* Calendly inline embed */}
-              <div
-                className="calendly-inline-widget rounded-xl overflow-hidden"
-                data-url="https://calendly.com/travergetic/consultation"
-                style={{ minWidth: "280px", height: "500px" }}
-              />
-              <script
-                async
-                src="https://assets.calendly.com/assets/external/widget.js"
-                typeof="text/javascript"
-              />
-            </motion.div>
+            {false && (
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="glass-card rounded-2xl p-7"
+              >
+                <div className="flex items-center gap-3 mb-5">
+                  <Calendar size={20} className="text-blue-400" />
+                  <h2 className="font-heading font-bold text-white text-lg">Schedule a Call</h2>
+                </div>
+                <p className="text-text-muted text-sm mb-5">
+                  Book a free 30-minute strategy session directly in our calendar.
+                </p>
+                {/* Calendly inline embed */}
+                <div
+                  className="calendly-inline-widget rounded-xl overflow-hidden"
+                  data-url="https://calendly.com/travergetic/consultation"
+                  style={{ minWidth: "280px", height: "500px" }}
+                />
+                <script
+                  async
+                  src="https://assets.calendly.com/assets/external/widget.js"
+                  typeof="text/javascript"
+                />
+              </motion.div>
+            )}
           </div>
 
           {/* Right — form */}
@@ -171,7 +179,7 @@ export default function ContactPage() {
                     <br />
                     Or{" "}
                     <a
-                      href="https://wa.me/919999999999"
+                      href="https://wa.me/918588910062"
                       className="text-blue-400 hover:underline"
                       target="_blank"
                       rel="noopener"
@@ -285,6 +293,14 @@ export default function ContactPage() {
                     </div>
                   )}
 
+                  <div className="flex justify-center w-full">
+                    <ReCAPTCHA
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"}
+                      onChange={(value) => setCaptchaValue(value)}
+                      theme="dark"
+                    />
+                  </div>
+
                   <button
                     type="submit"
                     disabled={loading}
@@ -323,7 +339,7 @@ export default function ContactPage() {
             <div className="text-center">
               <MapPin size={36} className="text-blue-400 mx-auto mb-3" />
               <p className="text-white font-heading font-semibold">Travergetic Innovations Pvt. Ltd.</p>
-              <p className="text-text-muted text-sm mt-1">India</p>
+              <p className="text-text-muted text-sm mt-1">Noida, UP, India</p>
               <a
                 href="https://maps.google.com"
                 target="_blank"

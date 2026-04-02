@@ -82,19 +82,19 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-card-border grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="flex items-center gap-3 text-text-muted text-sm">
             <Mail size={16} className="text-blue-400 flex-shrink-0" />
-            <a href="mailto:hello@travergetic.com" className="hover:text-white transition-colors">
-              hello@travergetic.com
+            <a href="mailto:sales@travergetic.com" className="hover:text-white transition-colors">
+              sales@travergetic.com
             </a>
           </div>
           <div className="flex items-center gap-3 text-text-muted text-sm">
             <Phone size={16} className="text-blue-400 flex-shrink-0" />
-            <a href="tel:+919999999999" className="hover:text-white transition-colors">
-              +91 99999 99999
+            <a href="tel:+918588910062" className="hover:text-white transition-colors">
+              +91 85889 10062
             </a>
           </div>
           <div className="flex items-center gap-3 text-text-muted text-sm">
             <MapPin size={16} className="text-blue-400 flex-shrink-0" />
-            <span>India</span>
+            <span>Noida, UP, India</span>
           </div>
         </div>
       </div>
@@ -104,8 +104,8 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-text-muted">
           <p>© {new Date().getFullYear()} Travergetic Innovations Private Limited. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
