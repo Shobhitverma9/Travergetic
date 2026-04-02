@@ -53,7 +53,7 @@ export default function TermsOfService() {
                 <h2 className="text-2xl font-bold text-white">2. Use License</h2>
               </div>
               <p className="text-text-muted leading-relaxed">
-                Permission is granted to temporarily download one copy of the materials on Travergetic Innovations's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
+                Permission is granted to temporarily download one copy of the materials on Travergetic Innovations&apos;s website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
               </p>
               <ul className="list-disc list-inside text-text-muted space-y-2 ml-4">
                 <li>Modify or copy the materials.</li>
@@ -70,7 +70,7 @@ export default function TermsOfService() {
                 <h2 className="text-2xl font-bold text-white">3. Disclaimer</h2>
               </div>
               <p className="text-text-muted leading-relaxed">
-                The materials on Travergetic Innovations's website are provided on an 'as is' basis. Travergetic Innovations makes no warranties, expressed or implied, and hereby disclaims all other warranties including, without limitation, implied warranties of merchantability or fitness for a particular purpose.
+                The materials on Travergetic Innovations&apos;s website are provided on an &apos;as is&apos; basis. Travergetic Innovations makes no warranties, expressed or implied, and hereby disclaims all other warranties including, without limitation, implied warranties of merchantability or fitness for a particular purpose.
               </p>
             </div>
 
@@ -81,7 +81,7 @@ export default function TermsOfService() {
                 <h2 className="text-2xl font-bold text-white">4. Limitations</h2>
               </div>
               <p className="text-text-muted leading-relaxed">
-                In no event shall Travergetic Innovations or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Travergetic Innovations's website.
+                In no event shall Travergetic Innovations or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Travergetic Innovations&apos;s website.
               </p>
             </div>
 
@@ -92,7 +92,7 @@ export default function TermsOfService() {
                 <h2 className="text-2xl font-bold text-white">5. Governing Law</h2>
               </div>
               <p className="text-text-muted leading-relaxed">
-                Any claim relating to Travergetic Innovations's website shall be governed by the laws of India, without regard to its conflict of law provisions. General Terms and Conditions applicable to Use of a Web Site.
+                Any claim relating to Travergetic Innovations&apos;s website shall be governed by the laws of India, without regard to its conflict of law provisions. General Terms and Conditions applicable to Use of a Web Site.
               </p>
             </div>
 

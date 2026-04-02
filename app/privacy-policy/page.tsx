@@ -42,7 +42,7 @@ export default function PrivacyPolicy() {
                 <h2 className="text-2xl font-bold text-white">1. Introduction</h2>
               </div>
               <p className="text-text-muted leading-relaxed">
-                Travergetic Innovations Private Limited ("we", "us", or "our") operates the <strong>travergetic.com</strong> website. We are committed to protecting your personal information and your right to privacy. This Privacy Policy applies to all information collected through our website, and/or any related services, sales, marketing or events.
+                Travergetic Innovations Private Limited (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) operates the <strong>travergetic.com</strong> website. We are committed to protecting your personal information and your right to privacy. This Privacy Policy applies to all information collected through our website, and/or any related services, sales, marketing or events.
               </p>
             </div>
 
