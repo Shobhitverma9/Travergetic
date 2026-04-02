@@ -295,7 +295,7 @@ export default function ContactPage() {
 
                   <div className="flex justify-center w-full">
                     <ReCAPTCHA
-                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"}
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
                       onChange={(value) => setCaptchaValue(value)}
                       theme="dark"
                     />
