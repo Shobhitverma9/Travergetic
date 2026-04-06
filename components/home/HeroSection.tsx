@@ -21,26 +21,32 @@ export default function HeroSection() {
       ref={ref}
       className="relative min-h-screen flex items-center overflow-hidden bg-primary"
     >
-      {/* Animated gradient orbs with parallax */}
+      {/* Video Background with Parallax */}
       <motion.div
         style={{ y: yBg }}
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 z-0 pointer-events-none w-full h-[120%]"
       >
-        <div className="hero-orb absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-blue-600/20" />
-        <div
-          className="hero-orb absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-cyan-500/15"
-          style={{ animationDelay: "2s" }}
-        />
-        <div
-          className="hero-orb absolute top-1/2 left-1/2 w-64 h-64 rounded-full bg-blue-800/20"
-          style={{ animationDelay: "4s" }}
-        />
-        {/* Grid overlay */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source src="/Travergetic Header-.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-primary" />
+        
+        {/* Grid overlay (Subtle) */}
         <div
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(37,99,235,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.05) 1px, transparent 1px)",
+              "linear-gradient(rgba(37,99,235,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.1) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
           }}
         />
