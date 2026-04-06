@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle2, Calendar } from "lucide-react";
-import emailjs from "@emailjs/browser";
+import { sendContactEmail } from "@/lib/actions/sendEmail";
 import ReCAPTCHA from "react-google-recaptcha";
 
 type FormData = {
@@ -46,21 +46,10 @@ export default function ContactPage() {
     setLoading(true);
     setError("");
     try {
-      // Replace these with your actual EmailJS credentials
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID",
-        {
-          from_name: data.name,
-          from_email: data.email,
-          phone: data.phone,
-          company: data.company,
-          service: data.service,
-          message: data.message,
-          to_email: "sales@travergetic.com",
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY"
-      );
+      const result = await sendContactEmail(data);
+      if (!result.success) {
+        throw new Error(result.error);
+      }
       setSubmitted(true);
       reset();
     } catch {

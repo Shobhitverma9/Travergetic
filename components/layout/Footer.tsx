@@ -33,7 +33,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center mb-6">
               <Image
-                src="/images/Travergetic_Final_Logo.png"
+                src="/Travergetic-Final-Logo-White.png"
                 alt="Travergetic Logo"
                 width={160}
                 height={40}

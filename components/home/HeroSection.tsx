@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import MagneticButton from "@/components/shared/MagneticButton";
@@ -9,8 +9,9 @@ import TextReveal from "@/components/shared/TextReveal";
 
 export default function HeroSection() {
   const ref = useRef<HTMLDivElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   // Use px instead of massive % to prevent layout height fluttering causing a scroll loop
   const yText = useTransform(scrollYProgress, [0, 1], ["0px", "80px"]);
   const yCards = useTransform(scrollYProgress, [0, 1], ["0px", "-40px"]);
@@ -23,15 +24,19 @@ export default function HeroSection() {
     >
       {/* Video Background with Parallax */}
       <motion.div
-        style={{ y: yBg }}
-        className="absolute inset-0 z-0 pointer-events-none w-full h-[120%]"
+        style={{ y: yBg, willChange: "transform" }}
+        className="absolute inset-0 z-0 pointer-events-none w-full h-[120%] transform-gpu"
       >
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-full object-cover"
+          preload="auto"
+          onLoadedData={() => setVideoLoaded(true)}
+          className={`w-full h-full object-cover transition-opacity duration-1000 ${
+            videoLoaded ? "opacity-100" : "opacity-0"
+          }`}
         >
           <source src="/Travergetic Header-.mp4" type="video/mp4" />
           Your browser does not support the video tag.

@@ -53,7 +53,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center group">
           <Image
-            src="/images/Travergetic_Final_Logo.png"
+            src="/Travergetic-Final-Logo-White.png"
             alt="Travergetic Logo"
             width={180}
             height={45}
