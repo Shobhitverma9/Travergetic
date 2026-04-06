@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import MagneticButton from "@/components/shared/MagneticButton";
@@ -9,10 +9,25 @@ import TextReveal from "@/components/shared/TextReveal";
 
 export default function HeroSection() {
   const ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
+
+  useEffect(() => {
+    // Fallback if events don't fire: reveal after 2 seconds anyway
+    const timer = setTimeout(() => {
+      setVideoLoaded(true);
+    }, 2000);
+
+    // If video is already ready (e.g. from cache)
+    if (videoRef.current && videoRef.current.readyState >= 3) {
+      setVideoLoaded(true);
+    }
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  // Use px instead of massive % to prevent layout height fluttering causing a scroll loop
   const yText = useTransform(scrollYProgress, [0, 1], ["0px", "80px"]);
   const yCards = useTransform(scrollYProgress, [0, 1], ["0px", "-40px"]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
@@ -20,7 +35,7 @@ export default function HeroSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center overflow-hidden bg-primary"
+      className="relative min-h-[80vh] md:min-h-screen flex items-center overflow-hidden bg-primary"
     >
       {/* Video Background with Parallax */}
       <motion.div
@@ -28,12 +43,13 @@ export default function HeroSection() {
         className="absolute inset-0 z-0 pointer-events-none w-full h-[120%] transform-gpu"
       >
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          onLoadedData={() => setVideoLoaded(true)}
+          onCanPlay={() => setVideoLoaded(true)}
           className={`w-full h-full object-cover transition-opacity duration-1000 ${
             videoLoaded ? "opacity-100" : "opacity-0"
           }`}
@@ -59,7 +75,7 @@ export default function HeroSection() {
 
       <motion.div
         style={{ y: yText, opacity }}
-        className="relative z-10 max-w-7xl mx-auto px-6 py-32 pt-40"
+        className="relative z-10 max-w-7xl mx-auto px-6 py-32 pt-28 md:pt-40"
       >
         <div className="max-w-4xl">
           {/* Eyebrow */}
@@ -70,7 +86,7 @@ export default function HeroSection() {
           </div>
 
           {/* Headline */}
-          <h1 className="font-heading font-black text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6">
+          <h1 className="font-heading font-black text-4xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6">
             <TextReveal delay={0.3}>Transforming Travel</TextReveal>
             <TextReveal delay={0.4} className="gradient-text">
               with Intelligent
